@@ -4,6 +4,8 @@
  */
 package com.mycompany.transformar;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author cchur
@@ -64,6 +66,11 @@ public class Cantidad extends javax.swing.JFrame {
                 enviarCantidadMouseClicked(evt);
             }
         });
+        enviarCantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enviarCantidadActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,15 +116,31 @@ public class Cantidad extends javax.swing.JFrame {
     }//GEN-LAST:event_CantidadMonedaActionPerformed
 
     private void enviarCantidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_enviarCantidadMouseClicked
+        
         cantidad = CantidadMoneda.getText();
-        Conversor conversor = new Conversor();
-        conversor.setVisible(true);
-        this.dispose();
+        
+        try{
+            double cambiar;
+            cambiar = Double.parseDouble(cantidad);
+            
+            Conversor conversor = new Conversor();
+            conversor.setVisible(true);
+            this.dispose();
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,"Valor no valido");
+        }
+        
+        
     }//GEN-LAST:event_enviarCantidadMouseClicked
 
     private void CancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelarMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_CancelarMouseClicked
+
+    private void enviarCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarCantidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_enviarCantidadActionPerformed
 
     /**
      * @param args the command line arguments

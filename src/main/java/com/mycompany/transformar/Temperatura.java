@@ -4,17 +4,19 @@
  */
 package com.mycompany.transformar;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author cchur
  */
 public class Temperatura extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Temperatura
-     */
+    public static double temperatura;
+    
     public Temperatura() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -27,7 +29,7 @@ public class Temperatura extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        grados = new javax.swing.JTextField();
         cambiarTemperatura = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -37,13 +39,18 @@ public class Temperatura extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Ingresar la temperatura que deseas convertir");
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        grados.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
         cambiarTemperatura.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         cambiarTemperatura.setText("Ok");
         cambiarTemperatura.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cambiarTemperaturaMouseClicked(evt);
+            }
+        });
+        cambiarTemperatura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cambiarTemperaturaActionPerformed(evt);
             }
         });
 
@@ -67,7 +74,7 @@ public class Temperatura extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(grados, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -76,7 +83,7 @@ public class Temperatura extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(grados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cambiarTemperatura)
@@ -92,10 +99,23 @@ public class Temperatura extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void cambiarTemperaturaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cambiarTemperaturaMouseClicked
-        ConversorTemperatura temperatura = new ConversorTemperatura();
-        temperatura.setVisible(true);
-        this.dispose();
+        String convertir;
+        convertir = grados.getText();
+        try{
+            temperatura = Double.parseDouble(convertir);
+        
+            ConversorTemperatura temperatura = new ConversorTemperatura();
+            temperatura.setVisible(true);
+            this.dispose();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Valor no valido");
+        }
+        
     }//GEN-LAST:event_cambiarTemperaturaMouseClicked
+
+    private void cambiarTemperaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarTemperaturaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cambiarTemperaturaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,8 +154,8 @@ public class Temperatura extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cambiarTemperatura;
+    private javax.swing.JTextField grados;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
